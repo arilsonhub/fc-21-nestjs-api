@@ -6,7 +6,7 @@ Content-Type: application/json
 
 {
     "name": "Amazon",
-    "symbol": "A1",
+    "symbol": "AMZN",
     "price": 100,
     "image": "AMZN.png"
 }
