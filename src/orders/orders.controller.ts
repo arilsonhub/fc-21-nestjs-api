@@ -14,8 +14,8 @@ export class OrdersController {
 
   @Get()
   async findAll(@Query('walletId') walletId: string) {
-    const orders = await this.ordersService.findAll({walletId: walletId});
-    return orders.map(order => new OrdersPresenter(order));
+    const orders = await this.ordersService.findAll({ walletId: walletId });
+    return orders.map((order) => new OrdersPresenter(order));
   }
 
   @Get(':id')

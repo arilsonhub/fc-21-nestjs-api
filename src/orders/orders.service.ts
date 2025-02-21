@@ -14,14 +14,17 @@ export class OrdersService {
       wallet: createOrderDto.walletId,
       asset: createOrderDto.assetId,
       shares: createOrderDto.shares,
+      price: createOrderDto.price,
       partial: createOrderDto.shares,
       type: createOrderDto.type,
-      status: OrderStatus.PENDING
+      status: OrderStatus.PENDING,
     });
   }
 
-  findAll(filter: {walletId: string}) {
-    return this.orderSchema.find({wallet: filter.walletId}).populate('asset') as Promise<(Order & {asset: Asset})[]>;
+  findAll(filter: { walletId: string }) {
+    return this.orderSchema
+      .find({ wallet: filter.walletId })
+      .populate('asset') as Promise<(Order & { asset: Asset })[]>;
     // .populate(['asset', 'trade']);
   }
 
