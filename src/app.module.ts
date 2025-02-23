@@ -7,7 +7,14 @@ import { WalletsModule } from './wallets/wallets.module';
 import { OrdersModule } from './orders/orders.module';
 
 @Module({
-  imports: [MongooseModule.forRoot('mongodb://root:root@localhost:27017/nest?authSource=admin&directConnection=true'), AssetsModule, WalletsModule, OrdersModule],
+  imports: [
+    MongooseModule.forRoot(
+      'mongodb://root:root@localhost:27017/nest?authSource=admin&directConnection=true',
+    ),
+    AssetsModule,
+    WalletsModule,
+    OrdersModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
