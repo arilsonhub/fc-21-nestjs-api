@@ -25,7 +25,7 @@ export type TradeKafkaMessage = {
 export class OrderConsumer {
   constructor(private ordersService: OrdersService) {}
 
-  @EventPattern('output')
+  @EventPattern('processed_orders')
   async handleTrade(@Payload() message: TradeKafkaMessage) {
     const transaction = message.transactions[message.transactions.length - 1];
     await this.ordersService.createTrade({

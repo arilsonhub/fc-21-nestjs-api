@@ -51,7 +51,7 @@ export class OrdersService implements OnModuleInit {
       status: OrderStatus.PENDING,
     });
     await this.kafkaProducer.send({
-      topic: 'input',
+      topic: 'orders',
       messages: [
         {
           key: order._id,
