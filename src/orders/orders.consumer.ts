@@ -23,11 +23,22 @@ export type TradeKafkaMessage = {
 
 @Controller()
 export class OrderConsumer {
-
   constructor(private ordersService: OrdersService) {}
 
   @EventPattern('output')
-  handleTrade(@Payload() message: TradeKafkaMessage) {
-    this.ordersService.createTrade();
+  async handleTrade(@Payload() message: TradeKafkaMessage) {
+    const transaction = message.transactions[message.transactions.length - 1];
+    await this.ordersService.createTrade({
+      orderId: message.order_id,
+      status: message.status,
+      relatedInvestorId:
+        message.order_type === OrderType.BUY
+          ? transaction.seller_id
+          : transaction.buyer_id,
+      brokerTradeId: transaction.transaction_id,
+      shares: transaction.shares,
+      price: transaction.price,
+      date: new Date(),
+    });
   }
 }
