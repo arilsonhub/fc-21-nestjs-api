@@ -14,7 +14,7 @@ import {
 @Module({
   imports: [
     MongooseModule.forRoot(
-      'mongodb://root:root@localhost:27017/nest?authSource=admin',
+      'mongodb://root:root@mongo:27017/nest?authSource=admin',
     ),
     AssetsModule,
     WalletsModule,

@@ -1,4 +1,33 @@
 services:
+
+  nest-api:
+    build:
+        context: .
+        dockerfile: ./.docker/nestjs/Dockerfile
+        target: api
+    ports:
+      - 3000:3000
+    extra_hosts:
+      - host.docker.internal:host-gateway
+
+  nest-kafka:
+    build:
+        context: .
+        dockerfile: ./.docker/nestjs/Dockerfile
+        target: kafka
+    extra_hosts:
+      - host.docker.internal:host-gateway
+
+  nest-cdn:
+    build:
+        context: .
+        dockerfile: ./.docker/nestjs/Dockerfile
+        target: cdn
+    ports:
+      - 9000:9000
+    extra_hosts:
+      - host.docker.internal:host-gateway
+
   mongo:
     build: ./.docker/mongodb
     environment:
